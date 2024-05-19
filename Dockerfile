@@ -13,9 +13,9 @@ RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9
     tar -xvzf apache-tomcat-9.0.89.tar.gz && \
     mv apache-tomcat-9.0.89/* /opt/tomcat/ && \
     rm apache-tomcat-9.0.89.tar.gz
-
+WORKDIR /var/lib/jenkins/workspace/pipeline/webapp/
 # Copy web application files to Tomcat webapps directory
-COPY /var/lib/jenkins/workspace/pipeline/webapp/* /opt/tomcat/webapps/
+COPY ./*.war /opt/tomcat/webapps/
 
 # Expose the necessary port and define the entry point
 EXPOSE 8080
