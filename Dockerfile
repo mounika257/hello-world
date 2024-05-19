@@ -9,14 +9,15 @@ RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
 # Set up Tomcat
 RUN mkdir -p /opt/tomcat
 WORKDIR /opt/tomcat
-RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz && \
+RUN curl -LO https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz && \
     tar -xvzf apache-tomcat-9.0.62.tar.gz && \
     mv apache-tomcat-9.0.62/* /opt/tomcat/ && \
     rm apache-tomcat-9.0.62.tar.gz
 
 # Copy web application files to Tomcat webapps directory
-COPY  /var/lib/jenkins/workspace/pipeline/webapp/* /opt/tomcat/webapps/
+COPY /var/lib/jenkins/workspace/pipeline/webapp/* /opt/tomcat/webapps/
 
 # Expose the necessary port and define the entry point
 EXPOSE 8080
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+
