@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: valaxy-service
+  name: tomcat-service
   labels:
-    app: regapp 
+    app: tomcat
 spec:
   selector:
-    app: regapp 
+    app: tomcat 
 
   ports:
     - port: 8080
