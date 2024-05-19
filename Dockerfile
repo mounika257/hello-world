@@ -13,10 +13,11 @@ RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9
     tar -xvzf apache-tomcat-9.0.89.tar.gz && \
     mv apache-tomcat-9.0.89/* /opt/tomcat/ && \
     rm apache-tomcat-9.0.89.tar.gz
-WORKDIR /var/lib/jenkins/workspace/pipeline/webapp/
+WORKDIR /var/lib/jenkins/workspace/pipeline/webapp/target
 # Copy web application files to Tomcat webapps directory
 COPY ./*.war /opt/tomcat/webapps/
 
+WORKDIR /opt/tomcat
 # Expose the necessary port and define the entry point
 EXPOSE 8080
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
