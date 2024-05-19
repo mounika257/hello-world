@@ -13,10 +13,9 @@ RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9
     tar -xvzf apache-tomcat-9.0.89.tar.gz && \
     mv apache-tomcat-9.0.89/* /opt/tomcat/ && \
     rm apache-tomcat-9.0.89.tar.gz
-WORKDIR /var/lib/jenkins/workspace/pipeline/webapp/target
 # Copy web application files to Tomcat webapps directory
 
-RUN cp webapp.war /opt/tomcat/webapps/app.war &&\
+RUN cp /var/lib/jenkins/workspace/pipeline/webapp/target/webapp.war /opt/tomcat/webapps/app.war &&\
     cp tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml &&\
     cp context.xml /opt/tomcat/webapps/manager/META-INF/context.xml &&\
     cp contexth.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
