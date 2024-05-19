@@ -3,21 +3,21 @@ kind: Deployment
 metadata:
   name: valaxy-regapp
   labels: 
-     app: regapp
+     app: tomcat
 
 spec:
   replicas: 2 
   selector:
     matchLabels:
-      app: regapp
+      app: tomcat
 
   template:
     metadata:
       labels:
-        app: regapp
+        app: tomcat
     spec:
       containers:
-      - name: regapp
+      - name: tomcat
         image: mounika257/tomcat
         imagePullPolicy: Always
         ports:
