@@ -8,7 +8,7 @@ RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
 
 # Set up Tomcat
 RUN mkdir -p /opt/tomcat
-RUN cp /var/lib/jenkins/workspace/pipeline/webapp/target/webapp.war /opt/tomcat/webapps/webapp.war
+
 WORKDIR /opt/tomcat
 RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz && \
     tar -xvzf apache-tomcat-9.0.89.tar.gz && \
@@ -19,7 +19,7 @@ RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9
 RUN cp tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml &&\
     cp context.xml /opt/tomcat/webapps/manager/META-INF/context.xml &&\
     cp contexth.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
-    
+COPY /var/lib/jenkins/workspace/pipeline/webapp/target/webapp.war /usr/local/tomcat/webapps/    
 WORKDIR /opt/tomcat
 # Expose the necessary port and define the entry point
 EXPOSE 8080
