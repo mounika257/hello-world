@@ -8,14 +8,14 @@ RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
 
 # Set up Tomcat
 RUN mkdir -p /opt/tomcat
+RUN cp /var/lib/jenkins/workspace/pipeline/webapp/target/webapp.war /opt/tomcat/webapps/webapp.war
 WORKDIR /opt/tomcat
 RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz && \
     tar -xvzf apache-tomcat-9.0.89.tar.gz && \
     mv apache-tomcat-9.0.89/* /opt/tomcat/ && \
     rm apache-tomcat-9.0.89.tar.gz
 # Copy web application files to Tomcat webapps directory
-ARG WAR_FILE
-COPY $WAR_FILE /opt/tomcat/webapps/webapp.war
+
 RUN cp tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml &&\
     cp context.xml /opt/tomcat/webapps/manager/META-INF/context.xml &&\
     cp contexth.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
