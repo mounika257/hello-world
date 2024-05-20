@@ -28,6 +28,8 @@ COPY contexth.xml /opt/tomcat/webapps/host-manager/META-INF/
 # Copy the webapp.war from local to Tomcat webapps directory
 COPY /var/lib/jenkins/workspace/pipeline/webapp/target/webapp.war /opt/tomcat/webapps/
 
-# Expose the necessary port and define the entry point
+# Expose the necessary port
 EXPOSE 8080
+
+# Define the entry point
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
