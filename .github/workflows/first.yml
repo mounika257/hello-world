@@ -1,6 +1,6 @@
 name: Run SonarQube with Maven
 
-on: push
+on: workflow_dispatch
 
 jobs:
   build:
